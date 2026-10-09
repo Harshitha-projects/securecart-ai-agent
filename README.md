@@ -1,55 +1,64 @@
-SecureCart AI — Secure Agentic Commerce Platform
+# SecureCart AI — Python Commerce API Demo
 
-Project Overview
+A Python FastAPI backend application demonstrating RESTful API development, e-commerce business logic, input validation, and automated testing.
 
-SecureCart AI is a Python-based agentic commerce platform designed to integrate AI shopping agents with secure Model Context Protocol (MCP) services.
+The application provides product inventory management, shopping cart functionality, stock validation, order creation, and checkout confirmation, along with an optional asynchronous Claude API integration.
 
-The platform is designed to enable AI agents to discover products, check inventory, manage shopping carts, and initiate order workflows through authenticated, server-enforced tools.
+## Technology Stack
 
-Key Features
+- **Backend:** Python, FastAPI
+- **API Development:** RESTful APIs, Pydantic
+- **AI Integration:** Anthropic Claude API (optional)
+- **Testing:** Pytest
+- **API Documentation:** Swagger UI / OpenAPI
+- **Data Storage:** In-memory storage for demonstration
 
-AI Agent Integration: Claude API integration for natural-language shopping requests and tool calling.
+## Implemented Features
 
-MCP Server: Model Context Protocol tools exposed through Streamable HTTP.
+- Product listing and inventory tracking
+- Shopping cart management
+- Stock availability validation
+- Checkout with explicit user confirmation
+- Order creation and management
+- Request validation and API error handling
+- Automated API testing with pytest
+- Interactive API documentation
 
-Authentication: JWT validation using trusted JWKS endpoints and OAuth 2.0 authorization scopes.
+## Run on Windows
 
-Secure Tool Execution: Server-side identity checks and permission enforcement.
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+```
 
-Commerce Integration: Product search, inventory checks, cart management, and order workflows.
+Open http://127.0.0.1:8000/docs and test `GET /products`.
 
-Asynchronous Processing: Python asyncio and HTTPX for non-blocking API operations.
+## Run Automated Tests
 
-Reliability: Structured logging, timeout handling, error responses, and idempotent checkout requests.
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
 
-Automated Testing: Pytest for API, agent workflow, and security tests.
+## Optional Claude Integration
 
-Technology Stack
+Set `ANTHROPIC_API_KEY` in your terminal environment before starting the server.
 
-Python, FastAPI, MCP Python SDK, Claude API, asyncio, HTTPX, PostgreSQL, SQLAlchemy, JWT, JWKS, OAuth 2.0, Pytest, Ruff, Docker, and GitHub Actions.
+The `/assistant` endpoint sends user messages to Claude asynchronously. It does not currently perform agent tool calling or execute checkout operations.
 
-System Architecture
+## Planned Enhancements
 
-Customer Request → Claude Agent → Secure MCP Server → Authentication & Authorization → Commerce APIs → PostgreSQL
+- MCP server using Streamable HTTP
+- Claude agent with tool calling
+- OAuth 2.0 authentication and JWT/JWKS validation
+- PostgreSQL database persistence
+- Asynchronous external e-commerce API integrations
 
-Security Design
+## Scope and Limitations
 
-The platform is designed to enforce authentication and authorization on the server rather than trusting instructions from an AI model.
+This is an **in-memory portfolio demonstration**, not a production commerce platform.
 
-Sensitive operations, including order submission, require valid identity, appropriate scopes, and explicit user confirmation.
-
-Getting Started
-
-Installation and execution instructions will be added after implementation and verification.
-
-Testing
-
-Automated tests will cover authentication, authorization, MCP tool execution, API integrations, and order workflows.
-
-Project Status
-
-Architecture and implementation planning.
-
-Disclaimer
-
-This is an independent portfolio project using simulated commerce data. It is not affiliated with a commercial retailer and does not process real payments.
+- No real payments are processed.
+- Inventory and orders reset when the server restarts.
+- Production authentication and authorization are not implemented.
+- Do not deploy publicly or use real customer data.
