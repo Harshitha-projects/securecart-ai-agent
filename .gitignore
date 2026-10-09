@@ -1,31 +1,11 @@
-# Python virtual environment
 .venv/
-venv/
-
-# Python cache
 __pycache__/
 *.pyc
-
-# Testing and linting cache
 .pytest_cache/
 .ruff_cache/
-.mypy_cache/
-
-# Environment variables and secrets
 .env
 .env.*
 !.env.example
-
-# Local databases
 *.db
 *.sqlite3
-
-# Editor and operating system files
 .vscode/
-.idea/
-.DS_Store
-
-# Build artifacts
-dist/
-build/
-*.egg-info/
